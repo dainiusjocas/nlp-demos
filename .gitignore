@@ -3,3 +3,14 @@
 hs_err*
 out/
 target/
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/lib/
+/checkouts/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.lein-failures
+.nrepl-port
