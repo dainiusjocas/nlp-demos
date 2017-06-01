@@ -1,0 +1,18 @@
+(page "index.html"
+  (:require
+    [my-castra.rpc :as rpc]))
+
+(html
+  (head
+    (link :href "app.css" :rel "stylesheet"))
+  (body
+    (h1 (text "Demo app, made with Hoplon and Castra!"))
+
+    (div
+      (p "Input an awesome timewords text")
+      (input
+        :type "text"
+        :value rpc/text-input
+        :keyup #(reset! rpc/text-input @%))
+      (button :click #(let [p (rpc/parse-timewords @rpc/text-input)] (.log js/console (.toISOString @rpc/timewords-output))) "Timewords")
+      (p (text (str "Date is: " rpc/timewords-output))))))
