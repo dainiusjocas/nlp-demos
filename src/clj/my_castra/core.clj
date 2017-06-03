@@ -7,6 +7,7 @@
 ;; You must not remove this notice, or any other, from this software.
 
 (ns my-castra.core
+  (:gen-class)
   (:require
     [my-castra.handler          :as handler]
     [ring.adapter.jetty             :refer [run-jetty]]))
@@ -20,3 +21,6 @@
   "Start castra demo server (port 33333)."
   [port public-path]
   (swap! server #(or % (app port public-path))))
+
+(defn -main [& args]
+  (start-server 8001 "/"))

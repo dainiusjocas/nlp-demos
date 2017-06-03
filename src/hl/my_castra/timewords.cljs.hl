@@ -1,0 +1,21 @@
+(page "timewords.html"
+  (:require
+    [my-castra.rpc :as rpc]
+    [my-castra.header :as header]))
+
+(html
+  (head
+    (link :href "app.css" :rel "stylesheet"))
+
+    (body
+      (header/header)
+      (h1 "Timewords")
+      (p "Input an awesome timewords text")
+      (input
+        :type "text"
+        :value rpc/text-input
+        :keyup #(reset! rpc/text-input @%))
+      (button :click #(rpc/parse-timewords @rpc/text-input) "Timewords")
+      (p (text (if-let [date rpc/timewords-output]
+                 (str "Date is: " (.toISOString date))
+                 (str "Empty timeword"))))))

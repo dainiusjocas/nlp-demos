@@ -1,0 +1,21 @@
+(page "metadata.html"
+  (:require
+    [my-castra.rpc :as rpc]
+    [my-castra.header :as header]))
+
+(html
+  (head
+    (link :href "app.css" :rel "stylesheet"))
+
+    (body
+      (header/header)
+      (h1 "Metadata Detector")
+      (p "Whole html MMM")
+      (input
+        :type "text"
+        :value rpc/text-input
+        :keyup #(reset! rpc/text-input @%))
+      (button :click #(rpc/detect-metadata) "Metadata")
+      (p (text (if-let [metadata rpc/metadata-output]
+                 (str "Date is: "metadata)
+                 (str "Empty metadata"))))))

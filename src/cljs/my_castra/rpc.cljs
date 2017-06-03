@@ -1,6 +1,6 @@
 (ns my-castra.rpc
   (:require-macros
-    [javelin.core :refer [defc defc=]])
+    [javelin.core :refer [defc defc= cell=]])
   (:require
    [javelin.core]
    [castra.core :refer [mkremote]]))
@@ -17,6 +17,8 @@
 (defc= timewords-input  (get state :timewords-input))
 (defc= timewords-output (get state :timewords-output))
 
+(defc= metadata-output (get state :metadata-output))
+
 (def get-state
   (mkremote 'my-castra.api/get-state state error loading))
 
@@ -25,3 +27,6 @@
 
 (def parse-timewords
   (mkremote 'my-castra.api/parse-timewords state error loading))
+
+(def detect-metadata
+  (mkremote 'my-castra.api/detect-metadata state error loading))
